@@ -44,6 +44,7 @@ model User {
   password       String?      @db.VarChar(255) // Hashed password for email/password auth
   role           String?      @default("member") @db.VarChar(50) // 'owner', 'admin', 'member'
   image          String?
+  emailVerified  DateTime?    @map("email_verified")
   createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz
   updatedAt      DateTime     @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
@@ -300,4 +301,14 @@ model PipelineSnapshot {
 
   @@unique([organizationId, snapshotDate])
   @@map("pipeline_snapshots")
+}
+
+// Verification Tokens (for password reset and email verification)
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
 }

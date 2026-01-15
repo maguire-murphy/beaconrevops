@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signupUser } from "@/server/actions/auth";
 import { signIn } from "next-auth/react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -13,17 +13,49 @@ export default function SignupPage() {
         name: "",
         email: "",
         password: "",
+        terms: false,
     });
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    // Simple password strength calculator
+    const getPasswordStrength = (password: string) => {
+        if (!password) return 0;
+        let score = 0;
+        if (password.length >= 8) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^A-Za-z0-9]/.test(password)) score += 1;
+        return score;
+    };
+
+    const strength = getPasswordStrength(formData.password);
+    const strengthColor = [
+        "bg-slate-200",
+        "bg-red-500",
+        "bg-orange-500",
+        "bg-yellow-500",
+        "bg-green-500",
+    ][strength];
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
         setIsLoading(true);
 
+        if (!formData.terms) {
+            setError("You must agree to the Terms of Service and Privacy Policy.");
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            await signupUser(formData);
+            await signupUser({
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+            });
 
             // Auto-login after signup
             const result = await signIn("credentials", {
@@ -113,20 +145,75 @@ export default function SignupPage() {
                             <label htmlFor="password" className="block text-sm font-medium text-slate-700">
                                 Password
                             </label>
-                            <div className="mt-1">
+                            <div className="mt-1 relative">
                                 <input
                                     id="password"
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     autoComplete="new-password"
                                     required
                                     value={formData.password}
                                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                                    className="block w-full rounded-md border-0 py-1.5 px-3 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    className="block w-full rounded-md border-0 py-1.5 px-3 text-slate-900 ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pr-10"
                                     placeholder="••••••••"
                                 />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-500"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? (
+                                        <EyeOff className="h-5 w-5" aria-hidden="true" />
+                                    ) : (
+                                        <Eye className="h-5 w-5" aria-hidden="true" />
+                                    )}
+                                </button>
                             </div>
+
+                            {/* Password Strength Indicator */}
+                            {formData.password && (
+                                <div className="mt-2">
+                                    <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                                        <div
+                                            className={`h-full ${strengthColor} transition-all duration-300`}
+                                            style={{ width: `${(strength / 4) * 100}%` }}
+                                        />
+                                    </div>
+                                    <p className="mt-1 text-xs text-slate-500">
+                                        {strength < 2 && "Weak password"}
+                                        {strength === 2 && "Medium strength"}
+                                        {strength === 3 && "Strong password"}
+                                        {strength === 4 && "Very strong password"}
+                                    </p>
+                                </div>
+                            )}
                             <p className="mt-1 text-xs text-slate-500">Must be at least 8 characters</p>
+                        </div>
+
+                        <div className="flex items-start">
+                            <div className="flex h-6 items-center">
+                                <input
+                                    id="terms"
+                                    name="terms"
+                                    type="checkbox"
+                                    required
+                                    checked={formData.terms}
+                                    onChange={(e) => setFormData({ ...formData, terms: e.target.checked })}
+                                    className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-600"
+                                />
+                            </div>
+                            <div className="ml-3 text-sm leading-6">
+                                <label htmlFor="terms" className="font-medium text-slate-900">
+                                    I agree to the{" "}
+                                    <Link href="/terms" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        Terms of Service
+                                    </Link>{" "}
+                                    and{" "}
+                                    <Link href="/privacy" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        Privacy Policy
+                                    </Link>
+                                </label>
+                            </div>
                         </div>
 
                         {error && (

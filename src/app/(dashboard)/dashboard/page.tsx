@@ -4,13 +4,24 @@ import { api } from "@/trpc/react";
 import { MetricCard } from "@/components/dashboard/metric-card";
 import { MrrChart } from "@/components/dashboard/mrr-chart";
 import { DollarSign, Users, TrendingUp } from "lucide-react";
+import { SkeletonCard, SkeletonChart } from "@/components/ui/skeleton";
 
 export default function DashboardPage() {
     const { data: metrics, isLoading: isLoadingMetrics } = api.mrr.getDashboardMetrics.useQuery();
     const { data: history, isLoading: isLoadingHistory } = api.mrr.getMrrHistory.useQuery();
 
     if (isLoadingMetrics || isLoadingHistory) {
-        return <div className="p-8 text-center text-muted-foreground">Loading dashboard...</div>;
+        return (
+            <div className="space-y-6">
+                <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <SkeletonCard />
+                    <SkeletonCard />
+                    <SkeletonCard />
+                </div>
+                <SkeletonChart />
+            </div>
+        );
     }
 
     const totalMrr = metrics?.totalMrr ? metrics.totalMrr / 100 : 0;

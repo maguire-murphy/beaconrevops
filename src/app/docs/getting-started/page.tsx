@@ -1,0 +1,200 @@
+import Link from "next/link";
+import { CheckCircle2, Link2, BarChart3, ArrowRight } from "lucide-react";
+import { Metadata } from "next";
+import { generateMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = generateMetadata({
+    title: "Getting Started with Beacon",
+    description: "Step-by-step guide to set up your Beacon account, connect Stripe and HubSpot, and start tracking your SaaS revenue metrics.",
+    path: "/docs/getting-started",
+});
+
+export default function GettingStartedPage() {
+    return (
+        <div className="min-h-screen bg-white">
+            <div className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
+                <div className="mb-8">
+                    <Link href="/docs" className="text-sm text-brand-600 hover:text-brand-700">
+                        ← Back to Documentation
+                    </Link>
+                </div>
+
+                <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+                    Getting Started with Beacon
+                </h1>
+                <p className="mt-4 text-lg text-slate-600">
+                    Follow this guide to set up your account and start tracking your SaaS revenue metrics in minutes.
+                </p>
+
+                <div className="prose prose-slate mt-12 max-w-none">
+                    <section>
+                        <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-600 text-lg font-bold">
+                                1
+                            </span>
+                            Create Your Account
+                        </h2>
+                        <p>
+                            Start by creating a free Beacon account. You can sign up with your email or use Google authentication for faster setup.
+                        </p>
+                        <ol>
+                            <li>Visit the <Link href="/signup">signup page</Link></li>
+                            <li>Enter your email and create a password, or click "Continue with Google"</li>
+                            <li>Verify your email address (check your inbox for a confirmation email)</li>
+                            <li>Complete your profile with your company information</li>
+                        </ol>
+                        <div className="not-prose flex items-start gap-3 rounded-lg bg-blue-50 p-4 my-6">
+                            <CheckCircle2 className="h-5 w-5 text-blue-600 mt-0.5" />
+                            <div>
+                                <p className="text-sm font-medium text-blue-900">
+                                    No credit card required
+                                </p>
+                                <p className="text-sm text-blue-700">
+                                    Start with our free tier and upgrade when you're ready.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-600 text-lg font-bold">
+                                2
+                            </span>
+                            Connect Stripe
+                        </h2>
+                        <p>
+                            Stripe integration is the foundation of your revenue analytics. Beacon syncs your subscription data, customer information, and MRR metrics.
+                        </p>
+                        <ol>
+                            <li>From your dashboard, click "Connect Stripe" in the onboarding wizard</li>
+                            <li>You'll be redirected to Stripe's secure OAuth flow</li>
+                            <li>Select the Stripe account you want to connect</li>
+                            <li>Authorize Beacon to access your subscription and customer data</li>
+                            <li>You'll be redirected back to Beacon, where the initial sync will begin</li>
+                        </ol>
+                        <div className="not-prose my-6">
+                            <Link
+                                href="/docs/integrations/stripe"
+                                className="flex items-center gap-2 text-brand-600 hover:text-brand-700"
+                            >
+                                <ArrowRight className="h-4 w-4" />
+                                <span className="text-sm font-medium">Detailed Stripe integration guide</span>
+                            </Link>
+                        </div>
+                        <h3>What data does Beacon access?</h3>
+                        <ul>
+                            <li>Customer information (names, emails, IDs)</li>
+                            <li>Subscription data (plans, status, pricing)</li>
+                            <li>Invoice and payment history</li>
+                            <li>Product and price information</li>
+                        </ul>
+                        <p>
+                            <strong>Note:</strong> Beacon does not access or store credit card numbers or sensitive payment methods.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-600 text-lg font-bold">
+                                3
+                            </span>
+                            Connect HubSpot (Optional)
+                        </h2>
+                        <p>
+                            Connect HubSpot to see how your sales pipeline correlates with revenue metrics and track deal progression.
+                        </p>
+                        <ol>
+                            <li>Click "Connect HubSpot" from the onboarding wizard</li>
+                            <li>Sign in to your HubSpot account</li>
+                            <li>Grant Beacon permission to access contacts and deals</li>
+                            <li>Map your HubSpot properties to Beacon fields (if needed)</li>
+                        </ol>
+                        <div className="not-prose my-6">
+                            <Link
+                                href="/docs/integrations/hubspot"
+                                className="flex items-center gap-2 text-brand-600 hover:text-brand-700"
+                            >
+                                <ArrowRight className="h-4 w-4" />
+                                <span className="text-sm font-medium">Detailed HubSpot integration guide</span>
+                            </Link>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-600 text-lg font-bold">
+                                4
+                            </span>
+                            Explore Your Dashboard
+                        </h2>
+                        <p>
+                            Once your integrations are connected, you'll see your metrics populate in real-time. Here's what you'll find:
+                        </p>
+                        <h3>Key Metrics</h3>
+                        <ul>
+                            <li><strong>MRR (Monthly Recurring Revenue):</strong> Your current monthly recurring revenue</li>
+                            <li><strong>ARR (Annual Recurring Revenue):</strong> Annualized revenue</li>
+                            <li><strong>Churn Rate:</strong> Customer and revenue churn metrics</li>
+                            <li><strong>Customer Count:</strong> Active, new, and churned customers</li>
+                        </ul>
+                        <h3>Main Navigation</h3>
+                        <ul>
+                            <li><strong>Dashboard:</strong> Overview of key metrics and trends</li>
+                            <li><strong>Customers:</strong> Detailed customer list and individual analysis</li>
+                            <li><strong>Metrics:</strong> Deep dives into MRR, churn, and retention</li>
+                            <li><strong>Pipeline:</strong> HubSpot deal tracking and forecasting</li>
+                            <li><strong>Forecast:</strong> Revenue predictions and projections</li>
+                            <li><strong>Settings:</strong> Manage integrations, team, and preferences</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900">
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-100 text-brand-600 text-lg font-bold">
+                                5
+                            </span>
+                            Next Steps
+                        </h2>
+                        <p>You're all set! Here are some recommended next steps:</p>
+                        <div className="not-prose space-y-4 my-6">
+                            <Link
+                                href="/dashboard"
+                                className="block rounded-lg border border-slate-200 p-6 hover:border-brand-600 transition-colors"
+                            >
+                                <h3 className="font-semibold text-slate-900">Visit your dashboard</h3>
+                                <p className="text-sm text-slate-600 mt-1">Start exploring your revenue metrics</p>
+                            </Link>
+                            <Link
+                                href="/customers"
+                                className="block rounded-lg border border-slate-200 p-6 hover:border-brand-600 transition-colors"
+                            >
+                                <h3 className="font-semibold text-slate-900">Review customer health</h3>
+                                <p className="text-sm text-slate-600 mt-1">See which customers are thriving or at risk</p>
+                            </Link>
+                            <Link
+                                href="/faq"
+                                className="block rounded-lg border border-slate-200 p-6 hover:border-brand-600 transition-colors"
+                            >
+                                <h3 className="font-semibold text-slate-900">Browse FAQ</h3>
+                                <p className="text-sm text-slate-600 mt-1">Find answers to common questions</p>
+                            </Link>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Need Help?</h2>
+                        <p>
+                            If you run into any issues or have questions:
+                        </p>
+                        <ul>
+                            <li>Check our <Link href="/faq">FAQ page</Link> for quick answers</li>
+                            <li>Browse the <Link href="/docs">full documentation</Link></li>
+                            <li>Email support at <a href="mailto:support@beacon.com">support@beacon.com</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    );
+}

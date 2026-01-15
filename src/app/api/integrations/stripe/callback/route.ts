@@ -74,9 +74,21 @@ export async function GET(req: NextRequest) {
             });
         }
 
-        return NextResponse.redirect(
-            new URL("/settings?success=stripe_connected", req.url)
-        );
+        // Determine redirect URL based on state
+        let redirectUrl = "/settings?success=stripe_connected";
+        const state = searchParams.get("state");
+        if (state) {
+            try {
+                const parsedState = JSON.parse(decodeURIComponent(state));
+                if (parsedState.source === "onboarding") {
+                    redirectUrl = "/onboarding";
+                }
+            } catch (e) {
+                console.error("Failed to parse state:", e);
+            }
+        }
+
+        return NextResponse.redirect(new URL(redirectUrl, req.url));
     } catch (err) {
         console.error("Stripe OAuth error:", err);
         return NextResponse.redirect(

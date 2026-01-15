@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
             return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/login`);
         }
 
-        const tokenResponse = await hubspotClient.oauth.tokensApi.createToken(
+        const tokenResponse = await hubspotClient.oauth.tokensApi.create(
             "authorization_code",
             code,
             HUBSPOT_CONFIG.redirectUri,
@@ -65,7 +65,21 @@ export async function GET(req: NextRequest) {
             });
         }
 
-        return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL}/settings/integrations?success=hubspot_connected`);
+        // Determine redirect URL based on state
+        let redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/settings/integrations?success=hubspot_connected`;
+        const state = req.nextUrl.searchParams.get("state");
+        if (state) {
+            try {
+                const parsedState = JSON.parse(decodeURIComponent(state));
+                if (parsedState.source === "onboarding") {
+                    redirectUrl = `${process.env.NEXT_PUBLIC_APP_URL}/onboarding`;
+                }
+            } catch (e) {
+                console.error("Failed to parse state:", e);
+            }
+        }
+
+        return NextResponse.redirect(redirectUrl);
 
     } catch (err) {
         console.error("HubSpot OAuth Error:", err);
