@@ -85,43 +85,28 @@ export default function ProjectPage() {
         <section className="border-t border-slate-100 bg-slate-50 py-16 lg:py-20">
           <div className="mx-auto max-w-5xl px-6">
             <h2 className="text-xl font-semibold text-slate-900">Project Components</h2>
-            <div className="mt-8 grid gap-8 sm:grid-cols-3">
+            <div className="mt-8 grid gap-8 sm:grid-cols-2">
               <div>
-                <h3 className="font-medium text-slate-900">Research & Planning</h3>
+                <h3 className="font-medium text-slate-900">Documentation</h3>
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li>
-                    <Link href="/docs/research/competitive-analysis" className="hover:text-indigo-600">
-                      → Market landscape analysis
+                    <Link href="/docs" className="hover:text-indigo-600">
+                      → Getting Started Guide
                     </Link>
                   </li>
                   <li>
-                    <Link href="/docs/research/user-research" className="hover:text-indigo-600">
-                      → User problem identification
+                    <Link href="/docs/integrations/stripe" className="hover:text-indigo-600">
+                      → Stripe Integration
                     </Link>
                   </li>
                   <li>
-                    <Link href="/docs/project-overview" className="hover:text-indigo-600">
-                      → Project overview
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-slate-900">Product Design</h3>
-                <ul className="mt-3 space-y-2 text-sm text-slate-600">
-                  <li>
-                    <Link href="/docs/feature-specs" className="hover:text-indigo-600">
-                      → Feature specifications
+                    <Link href="/docs/integrations/hubspot" className="hover:text-indigo-600">
+                      → HubSpot Integration
                     </Link>
                   </li>
                   <li>
-                    <Link href="/docs/technical-decisions" className="hover:text-indigo-600">
-                      → Technical decisions
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/docs/audit-report" className="hover:text-indigo-600">
-                      → Build audit report
+                    <Link href="/faq" className="hover:text-indigo-600">
+                      → Frequently Asked Questions
                     </Link>
                   </li>
                 </ul>
@@ -131,17 +116,12 @@ export default function ProjectPage() {
                 <ul className="mt-3 space-y-2 text-sm text-slate-600">
                   <li>
                     <Link href="/login" className="hover:text-indigo-600">
-                      → Working prototype
+                      → Working Prototype
                     </Link>
                   </li>
                   <li>
                     <Link href="https://github.com/maguire-murphy/rev-ops-platform" className="hover:text-indigo-600">
-                      → Source code (GitHub)
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/docs/project-retrospective" className="hover:text-indigo-600">
-                      → Project retrospective
+                      → Source Code (GitHub)
                     </Link>
                   </li>
                 </ul>

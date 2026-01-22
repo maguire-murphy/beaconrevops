@@ -35,8 +35,8 @@ export function PipelineBoard() {
                 const totalValue = stageDeals.reduce((sum, deal) => sum + (deal.amount || 0), 0);
 
                 return (
-                    <div key={stage.id} className="w-80 min-w-[20rem] flex-shrink-0 flex flex-col rounded-lg bg-slate-50 border border-slate-200 h-full max-h-[calc(100vh-12rem)]">
-                        <div className="p-3 border-b border-slate-200 bg-white rounded-t-lg sticky top-0 z-10">
+                    <div key={stage.id} className="w-80 min-w-[20rem] flex-shrink-0 flex flex-col rounded-lg bg-slate-50 border border-slate-200 h-full max-h-[calc(100vh-16rem)] md:max-h-[calc(100vh-12rem)]">
+                        <div className="p-3 border-b border-slate-200 bg-white rounded-t-lg flex-shrink-0">
                             <div className="flex items-center justify-between mb-1">
                                 <h3 className="font-semibold text-sm text-slate-700">{stage.label}</h3>
                                 <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
@@ -48,7 +48,7 @@ export function PipelineBoard() {
                             </div>
                         </div>
 
-                        <div className="p-2 flex-1 overflow-y-auto space-y-2">
+                        <div className="p-2 flex-1 overflow-y-auto space-y-2 min-h-0">
                             {stageDeals.map((deal) => (
                                 <div key={deal.id} className="bg-white p-3 rounded border border-slate-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
                                     <div className="font-medium text-sm text-slate-900 mb-1 truncate" title={deal.name || "Untitled Deal"}>

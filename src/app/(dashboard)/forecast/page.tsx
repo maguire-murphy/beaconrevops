@@ -32,12 +32,12 @@ export default function ForecastPage() {
 
     return (
         <div className="flex flex-col h-full space-y-6 p-6">
-            <div className="flex items-center justify-between">
+            <div className="space-y-4">
                 <div>
                     <h1 className="text-2xl font-bold tracking-tight text-slate-900">Revenue Forecast</h1>
                     <p className="text-sm text-slate-500">Projected MRR based on historical growth and churn.</p>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                     <div className="flex items-center gap-2">
                         <input
                             type="checkbox"
@@ -53,7 +53,7 @@ export default function ForecastPage() {
                     <select
                         value={scenario}
                         onChange={(e) => setScenario(e.target.value as "conservative" | "moderate" | "aggressive")}
-                        className="block rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="block w-full sm:w-auto rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     >
                         <option value="conservative">Conservative</option>
                         <option value="moderate">Moderate</option>
@@ -62,7 +62,7 @@ export default function ForecastPage() {
                 </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
                 <div className="rounded-xl border bg-white p-4 shadow-sm">
                     <div className="flex items-center gap-2">
                         <div className="p-2 bg-indigo-50 rounded-lg">
@@ -78,8 +78,8 @@ export default function ForecastPage() {
                     </div>
                 </div>
 
-                <div className="rounded-xl border bg-blue-50 p-4 shadow-sm col-span-2 flex items-center">
-                    <AlertCircle className="h-5 w-5 text-blue-600 mr-3" />
+                <div className="rounded-xl border bg-blue-50 p-4 shadow-sm md:col-span-2 flex items-start md:items-center">
+                    <AlertCircle className="h-5 w-5 text-blue-600 mr-3 flex-shrink-0 mt-0.5 md:mt-0" />
                     <p className="text-sm text-blue-700">
                         This forecast uses a <strong>{scenario}</strong> growth model based on your last 6 months of data.
                         {scenario === "conservative" && " It assumes 50% of your historical growth rate."}

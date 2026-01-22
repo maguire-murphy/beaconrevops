@@ -42,7 +42,7 @@ export default function StripeIntegrationPage() {
                         <li>You'll be redirected back to the platform, where the initial data sync will begin</li>
                     </ol>
 
-                    <h2>What Data isSync Synced?</h2>
+                    <h2>What Data is Synced?</h2>
                     <table>
                         <thead>
                             <tr>
