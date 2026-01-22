@@ -3,8 +3,10 @@
 import { useState, useEffect } from "react";
 import { api } from "@/trpc/react";
 import { useSession } from "next-auth/react";
-import { Loader2, Save, User, Mail, Building } from "lucide-react";
+import { Loader2, Save, User, Mail, Building, Lock } from "lucide-react";
 import Link from "next/link";
+
+const DEMO_USER_EMAIL = "demo@revops.app";
 
 export default function ProfileSettingsPage() {
     const { data: session, update: updateSession } = useSession();
@@ -12,6 +14,8 @@ export default function ProfileSettingsPage() {
     const [isSaving, setIsSaving] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState("");
+
+    const isDemoUser = session?.user?.email === DEMO_USER_EMAIL;
 
     const { data: org } = api.organization.getSettings.useQuery();
 
@@ -40,6 +44,10 @@ export default function ProfileSettingsPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (isDemoUser) {
+            setError("Profile changes are not allowed for the demo account.");
+            return;
+        }
         setIsSaving(true);
         setError("");
         updateMutation.mutate({ name });
@@ -51,6 +59,22 @@ export default function ProfileSettingsPage() {
                 <h1 className="text-2xl font-bold tracking-tight text-slate-900">Profile Settings</h1>
                 <p className="text-sm text-slate-500">Manage your personal information and account settings.</p>
             </div>
+
+            {isDemoUser && (
+                <div className="rounded-md bg-amber-50 border border-amber-200 p-4">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <Lock className="h-5 w-5 text-amber-500" aria-hidden="true" />
+                        </div>
+                        <div className="ml-3">
+                            <h3 className="text-sm font-medium text-amber-800">Demo Mode</h3>
+                            <p className="mt-1 text-sm text-amber-700">
+                                You are using a demo account. Profile changes, password updates, and account deletion are disabled to preserve the demo experience.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Navigation */}
             <div className="flex gap-4 border-b border-slate-200 pb-4">
@@ -104,7 +128,8 @@ export default function ProfileSettingsPage() {
                                     id="name"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="block w-full pl-10 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    disabled={isDemoUser}
+                                    className={`block w-full pl-10 rounded-md border-slate-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm ${isDemoUser ? 'bg-slate-50 text-slate-500' : ''}`}
                                     placeholder="John Doe"
                                 />
                             </div>
@@ -155,8 +180,8 @@ export default function ProfileSettingsPage() {
                     <div className="pt-4 border-t border-slate-200">
                         <button
                             type="submit"
-                            disabled={isSaving}
-                            className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:opacity-50"
+                            disabled={isSaving || isDemoUser}
+                            className="inline-flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isSaving ? (
                                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -177,12 +202,18 @@ export default function ProfileSettingsPage() {
                     <div className="flex items-center justify-between">
                         <div>
                             <p className="text-sm font-medium text-slate-900">Password</p>
-                            <p className="text-sm text-slate-500">Change your account password</p>
+                            <p className="text-sm text-slate-500">
+                                {isDemoUser ? "Password changes are disabled in demo mode" : "Change your account password"}
+                            </p>
                         </div>
                         <button
                             type="button"
-                            className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
-                            onClick={() => alert("Password change coming soon. Use 'Forgot Password' on the login page for now.")}
+                            disabled={isDemoUser}
+                            className="text-sm font-medium text-indigo-600 hover:text-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:text-slate-400"
+                            onClick={() => {
+                                if (isDemoUser) return;
+                                alert("Password change coming soon. Use 'Forgot Password' on the login page for now.");
+                            }}
                         >
                             Change Password
                         </button>
@@ -196,17 +227,23 @@ export default function ProfileSettingsPage() {
                 <p className="mt-1 text-sm text-slate-500">
                     Irreversible and destructive actions
                 </p>
-                
+
                 <div className="mt-4">
                     <button
                         type="button"
-                        className="inline-flex items-center rounded-md bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 ring-1 ring-inset ring-red-200 hover:bg-red-100"
-                        onClick={() => alert("Account deletion is not available in the demo environment.")}
+                        disabled={isDemoUser}
+                        className="inline-flex items-center rounded-md bg-red-50 px-4 py-2 text-sm font-semibold text-red-700 ring-1 ring-inset ring-red-200 hover:bg-red-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 disabled:ring-slate-200"
+                        onClick={() => {
+                            if (isDemoUser) return;
+                            alert("Account deletion is not available yet.");
+                        }}
                     >
                         Delete Account
                     </button>
                     <p className="mt-2 text-xs text-slate-500">
-                        This will permanently delete your account and all associated data.
+                        {isDemoUser
+                            ? "Account deletion is disabled in demo mode."
+                            : "This will permanently delete your account and all associated data."}
                     </p>
                 </div>
             </div>
