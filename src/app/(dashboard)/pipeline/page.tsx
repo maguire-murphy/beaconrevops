@@ -60,15 +60,15 @@ export default function PipelinePage() {
     }
 
     return (
-        <div className="flex flex-col h-full space-y-6 p-6">
-            <div className="flex items-center justify-between">
+        <div className="flex flex-col space-y-6 p-6 min-h-screen md:h-full">
+            <div className="flex items-center justify-between flex-shrink-0">
                 <h1 className="text-2xl font-bold tracking-tight text-slate-900">Pipeline</h1>
                 <div className="flex items-center gap-2">
                     {/* Add filters or actions here later */}
                 </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 flex-shrink-0">
                 <MetricCard
                     title="Total Pipeline Value"
                     value={`$${(metrics?.totalPipelineValue ? metrics.totalPipelineValue / 100 : 0).toLocaleString()}`}
@@ -91,7 +91,7 @@ export default function PipelinePage() {
                 />
             </div>
 
-            <div className="flex-1 min-h-0 overflow-hidden">
+            <div className="flex-1 min-h-[600px] md:min-h-0 overflow-hidden">
                 <PipelineBoard />
             </div>
         </div>
