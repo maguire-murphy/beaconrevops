@@ -36,6 +36,9 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
+.env.verify
+.env.vercel-check
 # Keep .env.example for documentation
 !.env.example
 
@@ -56,6 +59,7 @@ lint_*.txt
 # IDE
 .idea/
 .vscode/
+.claude/
 *.swp
 *.swo
 
