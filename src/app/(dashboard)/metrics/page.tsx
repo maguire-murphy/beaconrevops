@@ -12,7 +12,7 @@ export default function MetricsPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-bold tracking-tight">Metrics</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Metrics</h2>
                 <p className="text-slate-600">Comprehensive analytics for your revenue and retention</p>
             </div>
 

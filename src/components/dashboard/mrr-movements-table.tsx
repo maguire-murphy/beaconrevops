@@ -10,7 +10,7 @@ export function MrrMovementsTable() {
     }
 
     if (!movements || movements.length === 0) {
-        return <div className="p-4 text-center text-muted-foreground">No movements found.</div>;
+        return <div className="p-4 text-center text-slate-500">No movements found.</div>;
     }
 
     return (
@@ -24,13 +24,13 @@ export function MrrMovementsTable() {
                         <th className="p-4 text-right whitespace-nowrap">Amount</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="bg-white">
                     {movements.map((movement) => (
-                        <tr key={movement.id} className="border-t hover:bg-muted/50">
-                            <td className="p-4 whitespace-nowrap">
+                        <tr key={movement.id} className="border-t hover:bg-slate-50">
+                            <td className="p-4 whitespace-nowrap text-slate-700">
                                 {new Date(movement.effectiveDate).toLocaleDateString()}
                             </td>
-                            <td className="p-4 font-medium whitespace-nowrap">
+                            <td className="p-4 font-medium whitespace-nowrap text-slate-900">
                                 {movement.customer?.name || "Unknown"}
                             </td>
                             <td className="p-4 whitespace-nowrap">
@@ -47,7 +47,7 @@ export function MrrMovementsTable() {
                                     {movement.movementType.toUpperCase()}
                                 </span>
                             </td>
-                            <td className="p-4 text-right font-mono whitespace-nowrap">
+                            <td className="p-4 text-right font-mono whitespace-nowrap text-slate-900">
                                 {new Intl.NumberFormat("en-US", {
                                     style: "currency",
                                     currency: "USD",

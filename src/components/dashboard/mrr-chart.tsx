@@ -11,9 +11,9 @@ interface MrrChartProps {
 
 export function MrrChart({ data }: MrrChartProps) {
     return (
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
             <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-                <h3 className="tracking-tight text-sm font-medium text-muted-foreground">MRR Trend</h3>
+                <h3 className="tracking-tight text-sm font-medium text-slate-500">MRR Trend</h3>
             </div>
             <div className="p-6 pt-0 h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -26,20 +26,22 @@ export function MrrChart({ data }: MrrChartProps) {
                         </defs>
                         <XAxis
                             dataKey="date"
-                            stroke="#888888"
+                            stroke="#64748B"
                             fontSize={12}
                             tickLine={false}
                             axisLine={false}
+                            tick={{ fill: '#64748B' }}
                             tickFormatter={(value) => {
                                 const date = new Date(value);
                                 return `${date.getMonth() + 1}/${date.getDate()}`;
                             }}
                         />
                         <YAxis
-                            stroke="#888888"
+                            stroke="#64748B"
                             fontSize={12}
                             tickLine={false}
                             axisLine={false}
+                            tick={{ fill: '#64748B' }}
                             tickFormatter={(value) => `$${value}`}
                         />
                         <Tooltip

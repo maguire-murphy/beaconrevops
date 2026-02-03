@@ -34,7 +34,7 @@ export default function DashboardPage() {
     if (isLoading) {
         return (
             <div className="space-y-6">
-                <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Overview</h2>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                     <SkeletonCard />
                     <SkeletonCard />
@@ -48,7 +48,7 @@ export default function DashboardPage() {
     if (hasError) {
         return (
             <div className="space-y-6">
-                <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Overview</h2>
                 <div className="rounded-xl border bg-white shadow-sm">
                     <ErrorState
                         title="Failed to load dashboard data"
@@ -64,7 +64,7 @@ export default function DashboardPage() {
     if (!integrationStatus?.stripeConnected) {
         return (
             <div className="space-y-6">
-                <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Overview</h2>
                 <div className="rounded-xl border bg-white shadow-sm">
                     <NoStripeConnectionState />
                 </div>
@@ -82,7 +82,7 @@ export default function DashboardPage() {
         return (
             <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                    <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                    <h2 className="text-2xl font-bold tracking-tight text-slate-900">Overview</h2>
                     <button
                         onClick={handleRetry}
                         className="inline-flex items-center gap-2 rounded-md bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors"
@@ -116,7 +116,7 @@ export default function DashboardPage() {
     return (
         <div className="space-y-6">
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold tracking-tight">Overview</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Overview</h2>
                 <button
                     onClick={handleRetry}
                     className="inline-flex items-center gap-2 rounded-md bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-200 transition-colors"

@@ -83,7 +83,7 @@ export default function CustomersPage() {
     if (error) {
         return (
             <div className="space-y-6">
-                <h2 className="text-2xl font-bold tracking-tight">Customers</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Customers</h2>
                 <div className="rounded-xl border bg-white shadow-sm">
                     <ErrorState
                         title="Failed to load customers"
@@ -99,7 +99,7 @@ export default function CustomersPage() {
     if (!isLoading && (!customers || customers.length === 0)) {
         return (
             <div className="space-y-6">
-                <h2 className="text-2xl font-bold tracking-tight">Customers</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Customers</h2>
                 <div className="rounded-xl border bg-white shadow-sm">
                     <NoCustomersState />
                 </div>
@@ -111,12 +111,12 @@ export default function CustomersPage() {
         <div className="space-y-6">
             {/* Header with search and filters */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-2xl font-bold tracking-tight">Customers</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Customers</h2>
                 <div className="flex flex-col sm:flex-row gap-3">
                     <input
                         type="text"
                         placeholder="Search customers..."
-                        className="block w-full sm:w-64 rounded-md border-gray-300 shadow-sm focus:border-yellow-primary focus:ring-yellow-primary sm:text-sm p-2 border"
+                        className="block w-full sm:w-64 rounded-md border-gray-300 shadow-sm focus:border-yellow-primary focus:ring-yellow-primary sm:text-sm p-2 border text-slate-900 placeholder:text-slate-400"
                         value={search}
                         onChange={(e) => {
                             setSearch(e.target.value);
@@ -129,7 +129,7 @@ export default function CustomersPage() {
                             setStatusFilter(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="block w-full sm:w-40 rounded-md border-gray-300 shadow-sm focus:border-yellow-primary focus:ring-yellow-primary sm:text-sm p-2 border"
+                        className="block w-full sm:w-40 rounded-md border-gray-300 shadow-sm focus:border-yellow-primary focus:ring-yellow-primary sm:text-sm p-2 border text-slate-900"
                     >
                         <option value="all">All Status</option>
                         <option value="active">Active</option>
@@ -151,7 +151,7 @@ export default function CustomersPage() {
             {isLoading ? (
                 <SkeletonTable rows={8} />
             ) : paginatedCustomers.length === 0 ? (
-                <div className="rounded-xl border bg-white p-8 text-center text-muted-foreground">
+                <div className="rounded-xl border bg-white p-8 text-center text-slate-600">
                     <p>No customers match your filters.</p>
                     <button
                         onClick={clearFilters}

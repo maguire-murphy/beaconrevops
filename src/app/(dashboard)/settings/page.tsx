@@ -41,7 +41,7 @@ export default async function SettingsPage(props: {
     const isHubSpotConnected = !!hubspotIntegration;
     const success = searchParams?.success;
     const error = searchParams?.error;
-    
+
     // Check if integrations are demo-locked
     const isStripeDemoLocked = integration?.metadata && typeof integration.metadata === 'object' && 'locked' in integration.metadata && integration.metadata.locked === true;
     const isHubSpotDemoLocked = hubspotIntegration?.metadata && typeof hubspotIntegration.metadata === 'object' && 'locked' in hubspotIntegration.metadata && hubspotIntegration.metadata.locked === true;
@@ -50,7 +50,7 @@ export default async function SettingsPage(props: {
     return (
         <div className="space-y-6">
             <div className="border-b pb-4">
-                <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900">Settings</h2>
                 <p className="text-slate-500">Manage your integrations and account settings.</p>
             </div>
 
@@ -102,7 +102,7 @@ export default async function SettingsPage(props: {
                         <div className="ml-3">
                             <h3 className="text-sm font-medium text-amber-800">Demo Mode</h3>
                             <p className="mt-1 text-sm text-amber-700">
-                                This is a demo environment with pre-configured integrations. 
+                                This is a demo environment with pre-configured integrations.
                                 Integration settings are locked to preserve the demo experience.
                             </p>
                         </div>

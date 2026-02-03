@@ -10,11 +10,11 @@ export function MrrAnalysisTab() {
 
     return (
         <div className="space-y-6">
-            <h3 className="text-xl font-semibold">MRR Breakdown & Analysis</h3>
+            <h3 className="text-xl font-semibold text-slate-900">MRR Breakdown & Analysis</h3>
 
             <div className="grid gap-6 md:grid-cols-2">
                 <div className="rounded-xl border bg-white p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-4">MRR by Plan</h4>
+                    <h4 className="text-lg font-semibold mb-4 text-slate-900">MRR by Plan</h4>
                     {isLoading ? (
                         <div className="flex h-[300px] items-center justify-center">
                             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -25,7 +25,7 @@ export function MrrAnalysisTab() {
                 </div>
 
                 <div className="rounded-xl border bg-white p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-4">Plan Distribution</h4>
+                    <h4 className="text-lg font-semibold mb-4 text-slate-900">Plan Distribution</h4>
                     {isLoading ? (
                         <div className="flex h-[300px] items-center justify-center">
                             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -52,7 +52,7 @@ export function MrrAnalysisTab() {
             </div>
 
             <div className="space-y-4">
-                <h4 className="text-lg font-semibold">All MRR Movements</h4>
+                <h4 className="text-lg font-semibold text-slate-900">All MRR Movements</h4>
                 <MrrMovementsTable />
             </div>
         </div>

@@ -15,12 +15,12 @@ export function RetentionTab() {
 
     return (
         <div className="space-y-6">
-            <h3 className="text-xl font-semibold">Retention & Cohort Analysis</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Retention & Cohort Analysis</h3>
 
             {/* Churn Rate Card */}
             <div className="rounded-xl border bg-white p-6 shadow-sm">
                 <div className="mb-4">
-                    <h4 className="text-lg font-medium">Churn Rate Trend (30 Days)</h4>
+                    <h4 className="text-lg font-medium text-slate-900">Churn Rate Trend (30 Days)</h4>
                     <p className="text-sm text-slate-500">
                         Daily churn rate based on MRR snapshots.
                     </p>
@@ -31,7 +31,7 @@ export function RetentionTab() {
                     </div>
                 ) : (
                     <div className="space-y-2">
-                        <div className="text-2xl font-bold">
+                        <div className="text-2xl font-bold text-slate-900">
                             {churnMetrics?.currentChurnRate.toFixed(2)}%
                             <span className="text-sm font-normal text-slate-500 ml-2">current rate</span>
                         </div>
@@ -73,7 +73,7 @@ export function RetentionTab() {
                             <div className="text-center py-8 text-slate-500">Loading revenue cohorts...</div>
                         ) : (
                             <div className="space-y-4">
-                                <h4 className="text-lg font-medium">Net Revenue Retention by Cohort</h4>
+                                <h4 className="text-lg font-medium text-slate-900">Net Revenue Retention by Cohort</h4>
                                 <p className="text-sm text-slate-500">
                                     Percentage of initial MRR retained over time. Values &gt; 100% indicate net expansion.
                                 </p>
@@ -85,7 +85,7 @@ export function RetentionTab() {
                             <div className="text-center py-8 text-slate-500">Loading customer cohorts...</div>
                         ) : (
                             <div className="space-y-4">
-                                <h4 className="text-lg font-medium">Customer Retention by Cohort</h4>
+                                <h4 className="text-lg font-medium text-slate-900">Customer Retention by Cohort</h4>
                                 <p className="text-sm text-slate-500">
                                     Percentage of customers retained over time.
                                 </p>

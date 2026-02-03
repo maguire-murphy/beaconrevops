@@ -58,7 +58,7 @@ export function OverviewTab() {
             {/* Charts Row */}
             <div className="grid gap-6 md:grid-cols-2">
                 <div className="rounded-xl border bg-white p-6 shadow-sm">
-                    <h3 className="text-lg font-semibold mb-4">MRR by Plan</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900">MRR by Plan</h3>
                     {isLoadingPlan ? (
                         <div className="flex h-[300px] items-center justify-center">
                             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -69,7 +69,7 @@ export function OverviewTab() {
                 </div>
 
                 <div className="rounded-xl border bg-white p-6 shadow-sm">
-                    <h3 className="text-lg font-semibold mb-4">Churn Rate Trend (30 Days)</h3>
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900">Churn Rate Trend (30 Days)</h3>
                     {isLoadingChurn ? (
                         <div className="flex h-[300px] items-center justify-center">
                             <Loader2 className="h-8 w-8 animate-spin text-slate-400" />
@@ -82,7 +82,7 @@ export function OverviewTab() {
 
             {/* Recent Movements Table */}
             <div className="space-y-4">
-                <h3 className="text-lg font-semibold">Recent MRR Movements</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Recent MRR Movements</h3>
                 <MrrMovementsTable />
             </div>
         </div>

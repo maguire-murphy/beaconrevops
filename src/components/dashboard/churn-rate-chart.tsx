@@ -19,11 +19,13 @@ export function ChurnRateChart({ data }: ChurnRateChartProps) {
                         bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                     <XAxis
                         dataKey="date"
                         tickLine={false}
                         axisLine={false}
+                        stroke="#64748B"
+                        tick={{ fill: '#64748B' }}
                         tickFormatter={(value) => {
                             const date = new Date(value);
                             return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -32,6 +34,8 @@ export function ChurnRateChart({ data }: ChurnRateChartProps) {
                     <YAxis
                         tickLine={false}
                         axisLine={false}
+                        stroke="#64748B"
+                        tick={{ fill: '#64748B' }}
                         tickFormatter={(value) => `${value.toFixed(1)}%`}
                     />
                     <Tooltip

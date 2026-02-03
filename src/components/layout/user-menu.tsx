@@ -45,7 +45,7 @@ export function UserMenu() {
                 aria-label="User menu"
                 aria-expanded={isOpen}
             >
-                <div className="h-8 w-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-semibold">
+                <div className="h-8 w-8 rounded-full bg-navy-deep flex items-center justify-center text-white text-sm font-semibold">
                     {userInitials}
                 </div>
                 <ChevronDown className={`h-4 w-4 text-slate-600 transition-transform ${isOpen ? "rotate-180" : ""}`} />
